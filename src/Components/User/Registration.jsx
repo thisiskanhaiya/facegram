@@ -12,9 +12,11 @@ import {
   MDBIcon
 }
 from 'mdb-react-ui-kit';
+import Navigationbar from '../NavigationBar/Navigationbar';
 
 function Registration() {
   return (
+    <div className='container'>
     <MDBContainer fluid className='p-4 background-radial-gradient overflow-hidden'>
 
       <MDBRow>
@@ -93,6 +95,7 @@ function Registration() {
       </MDBRow>
 
     </MDBContainer>
+    </div>
   );
 }
 

@@ -1,5 +1,5 @@
 import './Navigationbar.css'
-
+import { Link } from "react-router-dom";
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -15,13 +15,13 @@ function Navigationbar() {
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-            <Nav.Link href="#home">Home</Nav.Link>
+            <Nav.Link href="#home"><Link to="/">Home</Link></Nav.Link>
             <Nav.Link href="#link">Add</Nav.Link>
           <Nav  className="justify-content-end" style={{ width: "100%" }}>
             <NavDropdown title="⏬" id="basic-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Login</NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.1"><Link to="/login">login</Link></NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">
-                Register
+              <Link to="/registration">register</Link>
               </NavDropdown.Item>
               <NavDropdown.Item href="#action/3.3">Profile</NavDropdown.Item>
               <NavDropdown.Divider />

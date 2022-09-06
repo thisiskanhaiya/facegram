@@ -1,23 +1,16 @@
 .left-nav{
-    background-color: #8ee6d7;
+    /* background-color: #8ee6d7; */
     width: 24%;   
 }
 .right-nav{
-    background-color: rgba(93, 129, 230, 0.521);
+    /* background-color: rgba(93, 129, 230, 0.521); */
     color: white;
     width: 75%;
     margin-left: 0.5%;
 
 }
-.a{
-    background-color: rgba(0, 64, 240, 0.521);
-    color: #dce0ee;
-    text-align: center;
-    margin-top: 10px;
-    border-radius: 7px;
-    height: 20vh;
-    margin-top: 20px;
-}
+
+
 .containt{
     height: 80vh;
     text-align: center;

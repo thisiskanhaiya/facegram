@@ -10,10 +10,13 @@ import {
   MDBCheckbox
 }
 from 'mdb-react-ui-kit';
+import Navigationbar from '../NavigationBar/Navigationbar';
 
 function Login() {
   return (
-    <MDBContainer fluid className="p-3 my-5">
+    <div className='container'>
+    <MDBContainer fluid className="p-3 my-5 container">
+      
 
       <MDBRow>
 
@@ -54,6 +57,7 @@ function Login() {
       </MDBRow>
 
     </MDBContainer>
+    </div>
   );
 }
 

@@ -1,3 +1,4 @@
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Home from './Components/Home';
 import Navigationbar from './Components/NavigationBar/Navigationbar';
@@ -6,12 +7,16 @@ import Registration from './Components/User/Registration';
 
 function App() {
   return (
-      <div className='all container'>
-      
+    
+    <div className='all container'>
       <Navigationbar/>
-      <Registration/>
-      {/* <Login/> */}
-      </div>
+    <Routes>
+      <Route path='/' element={<Home/>}/>
+      <Route path='/login' element={<Login/>}/>
+      <Route path='/registration' element={<Registration/>} />
+    </Routes>
+    </div>
+ 
   );
 }
 

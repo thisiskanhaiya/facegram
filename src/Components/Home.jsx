@@ -1,14 +1,13 @@
 import React from 'react'
-import Navi from './NavigationBar/Navigationbar'
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import './Home.css'
 function Home() {
   return (
-    <Container className='all'>
+    <Container>
       <Row>
-        <Navi/>
+      
       </Row>
       <Row>
 
@@ -23,11 +22,7 @@ function Home() {
      
       </Row>
       <Row>
-        <div className='a'>
-         <h1>
-         This is footer
-          </h1> 
-        </div>
+        
       </Row>
     </Container>
   )
