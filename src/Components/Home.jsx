@@ -6,20 +6,21 @@ import Col from 'react-bootstrap/Col';
 import './Home.css'
 function Home() {
   return (
-    <Container>
+    <Container className='all'>
       <Row>
         <Navi/>
       </Row>
       <Row>
 
-      
-          <div className='left-nav'>
-                left
+          <div>
+          <div className='left-nav child containt'>
+                 left
           </div>
-          <div className='right-nav'>
-                Right
+          <div className='right-nav child containt'>
+               Right
+          </div> 
           </div>
-       
+     
       </Row>
     </Container>
   )

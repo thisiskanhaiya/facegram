@@ -1,11 +1,24 @@
 .left-nav{
     background-color: #dce0ee;
-    height: 80vh;
-    width: 25%;
+    width: 24%;   
 }
 .right-nav{
     background-color: #162c4b;
     color: white;
     width: 75%;
+    margin-left: 0.5%;
+
+}
+.containt{
+    height: 80vh;
+    text-align: center;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border: 2px solid green;
+    border-radius: 2em;
+   
+}
+.child{
+    display: inline-block;
 }
 

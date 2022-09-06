@@ -3,9 +3,10 @@ import Home from './Components/Home';
 
 function App() {
   return (
-    <>
-    <Home></Home>
-    </>
+      <div className='all'>
+
+     <Home></Home>
+      </div>
   );
 }
 
