@@ -1,0 +1,11 @@
+.left-nav{
+    background-color: #dce0ee;
+    height: 80vh;
+    width: 25%;
+}
+.right-nav{
+    background-color: #162c4b;
+    color: white;
+    width: 75%;
+}
+
