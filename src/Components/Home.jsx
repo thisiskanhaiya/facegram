@@ -22,6 +22,13 @@ function Home() {
           </div>
      
       </Row>
+      <Row>
+        <div className='a'>
+         <h1>
+         This is footer
+          </h1> 
+        </div>
+      </Row>
     </Container>
   )
 }

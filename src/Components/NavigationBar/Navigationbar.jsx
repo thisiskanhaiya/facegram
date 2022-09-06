@@ -18,15 +18,15 @@ function Navigationbar() {
             <Nav.Link href="#home">Home</Nav.Link>
             <Nav.Link href="#link">Add</Nav.Link>
           <Nav  className="justify-content-end" style={{ width: "100%" }}>
-            <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
+            <NavDropdown title="⏬" id="basic-nav-dropdown">
+              <NavDropdown.Item href="#action/3.1">Login</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">
-                Another action
+                Register
               </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.3">Profile</NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item href="#action/3.4">
-                Separated link
+                Setting
               </NavDropdown.Item>
             </NavDropdown>
           </Nav>
