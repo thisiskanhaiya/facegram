@@ -10,9 +10,16 @@ import {
   MDBCheckbox
 }
 from 'mdb-react-ui-kit';
-import Navigationbar from '../NavigationBar/Navigationbar';
+import { useState } from 'react';
 
 function Login() {
+  const[email,setEmail] = useState("");
+  const[pass,setPass] = useState("");
+
+  function getData(e){
+    console.log(email,pass)
+    e.preventDefault();
+  }
   return (
     <div className='container'>
     <MDBContainer fluid className="p-3 my-5 container">
@@ -26,10 +33,10 @@ function Login() {
 
         <MDBCol col='4' md='6'>
 
-
-          <MDBInput wrapperClass='mb-4' label='Email address' id='formControlLg' type='email' size="lg"/>
-          <MDBInput wrapperClass='mb-4' label='Password' id='formControlLg' type='password' size="lg"/>
-
+        <form onSubmit={getData}>
+          <MDBInput onChange={(e)=>setEmail(e.target.value)} wrapperClass='mb-4' label='Email address' id='formControlLg' type='email' size="lg"/>
+          <MDBInput onChange={(e)=>setPass(e.target.value)} wrapperClass='mb-4' label='Password' id='formControlLg' type='password' size="lg"/>
+          
 
           <div className="d-flex justify-content-between mx-4 mb-4">
             <MDBCheckbox name='flexCheck' value='' id='flexCheckDefault' label='Remember me' />
@@ -37,7 +44,7 @@ function Login() {
           </div>
 
           <MDBBtn className="mb-4 w-100" size="lg">Sign in</MDBBtn>
-
+          </form>
           <div className="divider d-flex align-items-center my-4">
             <p className="text-center fw-bold mx-3 mb-0">OR</p>
           </div>
