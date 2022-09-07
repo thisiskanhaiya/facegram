@@ -5,8 +5,6 @@ module.exports = {
     try {
         const {fname,lname,username,email,pass,cpass} = req.body;
      
-        console.log("checkpoint-1");
-
      if (
         !fname ||
         !lname ||
@@ -16,7 +14,6 @@ module.exports = {
         !cpass
       ) {
         res.status(400);
-        console.log("checkpoint-2");
         throw new Error("Please add all fields");
       }
       const user = await User.create({
@@ -28,7 +25,6 @@ module.exports = {
         cpass
         
       });
-      console.log("checkpoint-3");
       res.status(200).json(user);
     } catch (error) {
       res.send(error);
