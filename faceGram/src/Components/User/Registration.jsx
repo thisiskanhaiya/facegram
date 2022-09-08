@@ -1,5 +1,6 @@
 import React from "react";
 import "./Registration.css";
+import axios from "axios";
 import {
   MDBBtn,
   MDBContainer,
@@ -12,20 +13,43 @@ import {
   MDBIcon,
 } from "mdb-react-ui-kit";
 import { useState } from "react";
-
+// const url = "http://localhost:4000/api/register";
 function Registration() {
+  const [fname, setFname] = useState("");
+  const [lname, setLname] = useState("");
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [pass, setPass] = useState("");
+  const [cpass, setCpass] = useState("");
 
-  const [fname,setFname]=useState("");
-  const [lname,setLname]=useState("");
-  const [email,setEmail]=useState("");
-  const [pass,setPass]=useState("");
-  const [cpass,setCpass]=useState("");
-  // const [con,setCon]=useState(false);
-
-  function getFormdata(e) {
-    console.log(fname,lname,email,pass,cpass);
+  const getFormdata = async (e) => {
+    // const data = {fname,lname,username,email,pass,cpass};
+    print1();
+    // axios.get("http://localhost:4000/")
+    // .then((res)=>console.log(res));
     e.preventDefault();
-  }
+  };
+
+  const print1 = async () => {
+    try {
+      console.log("check-1");
+        axios.post("http://localhost:4000/api/register", {
+        fname: fname,
+        lname: lname,
+        username: username,
+        email: email,
+        pass: pass,
+        cpass: cpass,
+      }) 
+      .then((response) => {
+        console.log(response);
+      });
+      // console.log(res.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="container">
       <MDBContainer
@@ -67,16 +91,13 @@ function Registration() {
 
             <MDBCard className="my-5 bg-glass">
               <MDBCardBody className="p-5">
-
-
-{/* ----------------------// form here //----------------------------- */}
-
+                {/* ----------------------// form here //----------------------------- */}
 
                 <form onSubmit={getFormdata}>
                   <MDBRow>
                     <MDBCol col="6">
                       <MDBInput
-                      onChange={(e)=>setFname(e.target.value)}
+                        onChange={(e) => setFname(e.target.value)}
                         wrapperClass="mb-4"
                         label="First name"
                         id="form1"
@@ -86,7 +107,7 @@ function Registration() {
 
                     <MDBCol col="6">
                       <MDBInput
-                      onChange={(e)=>setLname(e.target.value)}
+                        onChange={(e) => setLname(e.target.value)}
                         wrapperClass="mb-4"
                         label="Last name"
                         id="form2"
@@ -94,23 +115,29 @@ function Registration() {
                       />
                     </MDBCol>
                   </MDBRow>
-
                   <MDBInput
-                  onChange={(e)=>setEmail(e.target.value)}
+                    onChange={(e) => setUsername(e.target.value)}
+                    wrapperClass="mb-4"
+                    label="User Name"
+                    id="form4"
+                    type="text"
+                  />
+                  <MDBInput
+                    onChange={(e) => setEmail(e.target.value)}
                     wrapperClass="mb-4"
                     label="Email"
                     id="form3"
                     type="email"
                   />
                   <MDBInput
-                  onChange={(e)=>setPass(e.target.value)}
+                    onChange={(e) => setPass(e.target.value)}
                     wrapperClass="mb-4"
                     label="Password"
                     id="form4"
                     type="password"
                   />
                   <MDBInput
-                  onChange={(e)=>setCpass(e.target.value)}
+                    onChange={(e) => setCpass(e.target.value)}
                     wrapperClass="mb-4"
                     label="Confirm-Password"
                     id="form4"
@@ -119,7 +146,7 @@ function Registration() {
 
                   <div className="d-flex justify-content-center mb-4">
                     <MDBCheckbox
-                    // onChange={(e)=>setCon(e.target.value)}
+                      // onChange={(e)=>setCon(e.target.value)}
                       name="flexCheck"
                       value=""
                       id="flexCheckDefault"
@@ -130,7 +157,7 @@ function Registration() {
                   <MDBBtn type="submit" className="w-100 mb-4" size="md">
                     sign up
                   </MDBBtn>
-   </form>
+                </form>
 
                 <div className="text-center">
                   <p>or sign up with:</p>
