@@ -2,6 +2,7 @@ const User = require("../Models/Models");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const Add = require("../Models/Groups");
+const { json } = require("express");
 module.exports = {
   PostUser: async (req, res) => {
     const { fname, lname, username, email, pass, cpass } = req.body;
@@ -61,13 +62,14 @@ module.exports = {
         res.status(404).json({ error: "Invalid Credential" });
       }
     } catch (err) {
-      console.log(err);
+      res.status(400).send("error");
     }
   },
 
+  // ----------------------- Adding new Group ---------------------------
+
   Add: async (req, res) => {
     const { name, category, description } = req.body;
-    console.log(req.body);
     try {
 
       if(!name||!category||!description){
@@ -78,7 +80,6 @@ module.exports = {
         if (grpExist) {
           res.status(422).json({ error: "Group is already exist" });
         } else {
-            console.log(grpExist);
           const group = new Add({  
             name:name,
             category:category,
@@ -93,4 +94,16 @@ module.exports = {
       res.status(422).json({ error: "Something Went Wrong" });
     }
   },
+  // -------------------------- getting added group info -----------------------
+
+  Groups:async function(req,res){
+
+    try {
+      const result = await Add.find();
+      res.status(201).json({ data: result });
+    } catch (err) {
+      res.status(422).json({ error: "Something Went Wrong" });
+    }
+  }
+
 };
