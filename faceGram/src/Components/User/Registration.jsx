@@ -33,8 +33,7 @@ function Registration() {
 
   const print1 = async () => {
     try {
-      console.log("check-1");
-        axios.post("http://localhost:4000/api/register", {
+      const res = await  axios.post("http://localhost:4000/api/register", {
         fname: fname,
         lname: lname,
         username: username,
@@ -42,22 +41,18 @@ function Registration() {
         pass: pass,
         cpass: cpass,
       }) 
-      .then((res) => {
-        console.log(res.status);
-        if(res.status === 421){
-          swal("Error", "All field are required", "warning");
-        }
-        else if(res.status === 422 ) {
-          swal("Error", "User already exist", "warning");
-        }
-        else if(res.status === 423){
-          swal("Error","Passwords doesnot match correctly", "warning");
-        }
-        else{
-          swal("Good job!", "Register Successfully!", "success")       
-        }
-      });
-      // console.log(res.data);
+      // .then((res) => {
+      //   console.log(res);
+      // });
+      console.warn(res.status);
+      if(res.status === 200){
+        swal("Added", "User Added Successfully!", "success")
+      }else{
+        swal("Error","Passwords doesnot match correctly", "warning");
+      }
+
+      
+      console.warn(res.status);
     } catch (error) {
       console.log(error);
     }

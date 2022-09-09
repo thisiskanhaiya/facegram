@@ -1,9 +1,23 @@
 const User = require("../Models/Models");
 const jwt = require("jsonwebtoken");
+const cookieParser = require("cookie-parser");
 const bcrypt = require("bcryptjs");
 const Add = require("../Models/Groups");
 const { json } = require("express");
+
+// const createToken = async() => {
+//   const token = await jwt.sign({_id:"631a0fc32c809735c9d01424"},"this is secret key for jwt this is secret key for jwt",{
+//     expiresIn:"1h"
+//   });
+//   console.log(token);
+//   const userVer = await jwt.verify(token,"this is secret key for jwt this is secret key for jwt");
+//   console.log(userVer);
+// }
+// createToken();
+
 module.exports = {
+  // -----------------------------Register new user -----------------------------
+
   PostUser: async (req, res) => {
     const { fname, lname, username, email, pass, cpass } = req.body;
 
@@ -25,10 +39,18 @@ module.exports = {
           email,
           pass,
           cpass,
-        }); //make user object
+        });
 
-        await registered_user.save();
-        res.status(400);
+        // -------------middleware--------------
+        const token = await registered_user.generateAuthToken();
+        console.log(token);
+        res.cookie("jwt", token, {
+          expires: new Date(Date.now() + 5184000),
+          httpOnly: true,
+        });
+        const reg = await registered_user.save();
+        res.sendStatus(200);
+        console.log(reg);
       }
     } catch (error) {
       res.status(404).send(error);
@@ -40,29 +62,22 @@ module.exports = {
   Login: async (req, res) => {
     try {
       const { email, pass } = req.body;
-      // if (!email || !pass) {
-      //   res.status(421).json({ error: "Plz Filled the data" });
-      // }
       const userLogin = await User.findOne({ email: email });
-
-      if (userLogin) {
-        const isMatch = await bcrypt.compare(pass, userLogin.pass);
-
-        if (!isMatch) {
-          res.status(400).json({ error: "Invalid Credential" });
-        } else {
-          let token = jwt.sign(req.body, "this is secret key for jwt", {
-            expiresIn: "1h",
-          });
-          userLogin.tokens = await userLogin.tokens.concat({ token: token });
-          await userLogin.save();
-          res.status(200).json({ message: "user signin successfully" });
-        }
+      const isMatch = await bcrypt.compare(pass, userLogin.pass);
+      if (isMatch) {
+        // let token = await userLogin.generateAuthToken();
+        // return res
+        //   .cookie("access_token", token, {
+        //     httpOnly: true
+        //   })
+        //   .status(200)
+        //   .json({ message: "Logged in successfully 😊 👌" });
+        res.status(200).json({ message: "user signin successfully" });
       } else {
-        res.status(404).json({ error: "Invalid Credential" });
+        res.status(400).json({ message: "Invalid credential" });
       }
     } catch (err) {
-      res.status(400).send("error");
+      res.status(400).send(err);
     }
   },
 
@@ -71,22 +86,20 @@ module.exports = {
   Add: async (req, res) => {
     const { name, category, description } = req.body;
     try {
-
-      if(!name||!category||!description){
+      if (!name || !category || !description) {
         res.status(404).json({ error: "Group is already exist" });
-      }else 
-      {   
+      } else {
         const grpExist = await Add.findOne({ name: name });
         if (grpExist) {
           res.status(422).json({ error: "Group is already exist" });
         } else {
-          const group = new Add({  
-            name:name,
-            category:category,
-            description:description
+          const group = new Add({
+            name: name,
+            category: category,
+            description: description,
           });
-  
-          await group.save();          
+
+          await group.save();
           res.status(200).json({ message: "Group Added successfully" });
         }
       }
@@ -96,14 +109,12 @@ module.exports = {
   },
   // -------------------------- getting added group info -----------------------
 
-  Groups:async function(req,res){
-
+  Groups: async function (req, res) {
     try {
       const result = await Add.find();
       res.status(201).json({ data: result });
     } catch (err) {
       res.status(422).json({ error: "Something Went Wrong" });
     }
-  }
-
+  },
 };
