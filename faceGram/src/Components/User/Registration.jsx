@@ -1,5 +1,6 @@
 import React from "react";
 import "./Registration.css";
+import swal from "sweetalert";
 import axios from "axios";
 import {
   MDBBtn,
@@ -41,8 +42,20 @@ function Registration() {
         pass: pass,
         cpass: cpass,
       }) 
-      .then((response) => {
-        console.log(response);
+      .then((res) => {
+        console.log(res.status);
+        if(res.status === 421){
+          swal("Error", "All field are required", "warning");
+        }
+        else if(res.status === 422 ) {
+          swal("Error", "User already exist", "warning");
+        }
+        else if(res.status === 423){
+          swal("Error","Passwords doesnot match correctly", "warning");
+        }
+        else{
+          swal("Good job!", "Register Successfully!", "success")       
+        }
       });
       // console.log(res.data);
     } catch (error) {

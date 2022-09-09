@@ -2,9 +2,7 @@
   text-align: center;
 }
 
-.all{
-  background-color: aliceblue;
-}
+
 
 .App-logo {
   height: 40vmin;
@@ -31,6 +29,9 @@
 .App-link {
   color: #61dafb;
 }
+.all{
+  background: rgb(106,101,190);
+background: linear-gradient(259deg, rgba(106,101,190,1) 0%, rgba(67,85,214,0.14329481792717091) 40%, rgba(0,212,255,1) 86%);}
 
 @keyframes App-logo-spin {
   from {

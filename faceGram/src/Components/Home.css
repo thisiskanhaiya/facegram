@@ -1,14 +1,13 @@
 .left-nav{
-    /* background-color: #8ee6d7; */
-    width: 24%;   
+    background-color: #091edf;
+    height: 100vh;
+     
 }
-.right-nav{
-    /* background-color: rgba(93, 129, 230, 0.521); */
-    color: white;
-    width: 75%;
-    margin-left: 0.5%;
 
+.grps{
+    margin-top: 5%;
 }
+
 
 
 .containt{
