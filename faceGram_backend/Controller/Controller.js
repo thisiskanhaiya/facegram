@@ -43,14 +43,15 @@ module.exports = {
 
         // -------------middleware--------------
         const token = await registered_user.generateAuthToken();
-        console.log(token);
+        console.log("getting token back",token);
         res.cookie("jwt", token, {
-          expires: new Date(Date.now() + 5184000),
+          expires:new Date(Date.now() + 300000),
           httpOnly: true,
         });
+      
         const reg = await registered_user.save();
-        res.sendStatus(200);
         console.log(reg);
+        res.sendStatus(200);
       }
     } catch (error) {
       res.status(404).send(error);
@@ -65,13 +66,11 @@ module.exports = {
       const userLogin = await User.findOne({ email: email });
       const isMatch = await bcrypt.compare(pass, userLogin.pass);
       if (isMatch) {
-        // let token = await userLogin.generateAuthToken();
-        // return res
-        //   .cookie("access_token", token, {
-        //     httpOnly: true
-        //   })
-        //   .status(200)
-        //   .json({ message: "Logged in successfully 😊 👌" });
+        let token = await userLogin.generateAuthToken();
+        res.cookie("jwtoken", token, {
+          expires: new Date(Date.now() + 5184000),
+          httpOnly: true,
+        });
         res.status(200).json({ message: "user signin successfully" });
       } else {
         res.status(400).json({ message: "Invalid credential" });
